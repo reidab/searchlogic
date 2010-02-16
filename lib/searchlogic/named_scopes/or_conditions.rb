@@ -118,7 +118,7 @@ module Searchlogic
         end
         
         def create_or_condition(scopes, args)
-          scopes_options = scopes.collect { |scope, *args| send(scope, *args).proxy_options }
+          scopes_options = scopes.collect { |scope| send(scope, *args).proxy_options }
           # We're using first scope to determine column's type
           scope = named_scope_options(scopes.first)
           column_type = scope.respond_to?(:searchlogic_arg_type) ? scope.searchlogic_arg_type : :string
